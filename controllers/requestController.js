@@ -166,3 +166,14 @@ export const getDashboardStats = asyncHandler(async (req, res) => {
     recentRequests,
   });
 });
+
+// @route DELETE /api/admin/requests/:id
+export const deleteRequest = asyncHandler(async (req, res) => {
+  const request = await Request.findByIdAndDelete(req.params.id);
+  if (!request) {
+    res.status(404);
+    throw new Error('Request not found');
+  }
+  res.json({ success: true, message: 'Request deleted' });
+});
+

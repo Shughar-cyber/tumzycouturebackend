@@ -1,4 +1,4 @@
-﻿import express from "express";
+import express from "express";
 import { loginAdmin, logoutAdmin, getAdminProfile } from "../controllers/authController.js";
 import { protectAdmin } from "../middleware/auth.js";
 import {
@@ -16,6 +16,7 @@ import {
   getRequestById,
   updateRequestStatus,
   getDashboardStats,
+  deleteRequest,
 } from "../controllers/requestController.js";
 import { uploadDesignImages } from "../config/cloudinary.js";
 
@@ -49,5 +50,7 @@ router.delete("/categories/:id", protectAdmin, deleteCategory);
 router.get("/requests", protectAdmin, getRequests);
 router.get("/requests/:id", protectAdmin, getRequestById);
 router.patch("/requests/:id", protectAdmin, updateRequestStatus);
+router.delete("/requests/:id", protectAdmin, deleteRequest);
 
 export default router;
+
